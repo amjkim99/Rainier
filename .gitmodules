@@ -1,0 +1,3 @@
+[submodule "Rainier/vendor/spdlog"]
+	path = Rainier/vendor/spdlog
+	url = https://github.com/gabime/spdlog
