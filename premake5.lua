@@ -11,6 +11,11 @@ workspace "Rainier"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Rainier/vendor/GLFW/include"
+
+include "Rainier/vendor/GLFW"
+
 project "Rainier"
     location "Rainier"
     kind "SharedLib"
@@ -18,6 +23,9 @@ project "Rainier"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+    pchheader "rnpch.h"
+    pchsource "Rainier/src/rnpch.cpp"
 
     files
     {
@@ -28,12 +36,19 @@ project "Rainier"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.GLFW}"
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
         cppdialect "C++20"
-        staticruntime "On"
+        staticruntime "off"
         systemversion "latest"
 
         defines
@@ -49,14 +64,17 @@ project "Rainier"
 
     filter "configurations:Debug"
         defines "RN_DEBUG"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "RN_RELEASE"
+        runtime "Release"
         optimize "On"
 
     filter "configurations:Dist"
         defines "RN_DIST"
+        runtime "Release"
         optimize "On"
 
 project "Sandbox"

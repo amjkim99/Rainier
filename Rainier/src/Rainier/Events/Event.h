@@ -1,9 +1,7 @@
 #pragma once
 
 #include "Rainier/Core.h"
-
-#include <string>
-#include <functional>
+#include "rnpch.h"
 
 namespace Rainier {
 

@@ -1,3 +1,4 @@
+#include "rnpch.h"
 #include "Application.h"
 
 #include "Rainier/Events/ApplicationEvent.h"
@@ -5,17 +6,21 @@
 
 namespace Rainier {
 
-	Application::Application() {
+	Application::Application()
+	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
+	}
+
+	Application::~Application()
+	{
 
 	}
 
-	Application::~Application() {
-
-	}
-
-	void Application::Run() {
-		WindowResizeEvent e(1280, 720);
-		RN_TRACE(e);
-		while (true);
+	void Application::Run()
+	{
+		while (m_Running)
+		{
+			m_Window->OnUpdate();
+		}
 	}
 }

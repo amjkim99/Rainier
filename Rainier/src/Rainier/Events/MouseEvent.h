@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Rainier {
 
 	class RAINIER_API MouseMovedEvent : public Event
