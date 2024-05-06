@@ -4,6 +4,9 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
@@ -13,8 +16,14 @@
     <Filter Include="Rainier\Events">
       <UniqueIdentifier>{F3CBD619-DF99-CA1F-C82D-3B46B49AA684}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rainier\ImGui">
+      <UniqueIdentifier>{594FAE8C-C50F-2AC3-8E4A-7340FAC96E9F}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -40,6 +49,15 @@
     <ClInclude Include="src\Rainier\Events\MouseEvent.h">
       <Filter>Rainier\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Rainier\ImGui\ImGuiLayer.h">
+      <Filter>Rainier\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rainier\Layer.h">
+      <Filter>Rainier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rainier\LayerStack.h">
+      <Filter>Rainier</Filter>
+    </ClInclude>
     <ClInclude Include="src\Rainier\Log.h">
       <Filter>Rainier</Filter>
     </ClInclude>
@@ -49,10 +67,22 @@
     <ClInclude Include="src\rnpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Rainier\Application.cpp">
+      <Filter>Rainier</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rainier\ImGui\ImGuiLayer.cpp">
+      <Filter>Rainier\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rainier\Layer.cpp">
+      <Filter>Rainier</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rainier\LayerStack.cpp">
       <Filter>Rainier</Filter>
     </ClCompile>
     <ClCompile Include="src\Rainier\Log.cpp">

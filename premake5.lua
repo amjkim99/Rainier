@@ -13,8 +13,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "Rainier/vendor/GLFW/include"
+IncludeDir["Glad"] = "Rainier/vendor/Glad/include"
+IncludeDir["ImGui"] = "Rainier/vendor/imgui"
 
 include "Rainier/vendor/GLFW"
+include "Rainier/vendor/Glad"
+include "Rainier/vendor/imgui"
 
 project "Rainier"
     location "Rainier"
@@ -37,12 +41,16 @@ project "Rainier"
     {
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}"
     }
 
     links
     {
         "GLFW",
+        "Glad",
+        "ImGui",
         "opengl32.lib"
     }
 
@@ -54,7 +62,8 @@ project "Rainier"
         defines
         {
             "RN_PLATFORM_WINDOWS",
-            "RN_BUILD_DLL"
+            "RN_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands
@@ -64,17 +73,17 @@ project "Rainier"
 
     filter "configurations:Debug"
         defines "RN_DEBUG"
-        runtime "Debug"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "RN_RELEASE"
-        runtime "Release"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "RN_DIST"
-        runtime "Release"
+        buildoptions "/MD"
         optimize "On"
 
 project "Sandbox"
