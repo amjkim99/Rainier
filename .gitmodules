@@ -7,3 +7,6 @@
 [submodule "Rainier/vendor/imgui"]
 	path = Rainier/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Rainier/vendor/glm"]
+	path = Rainier/vendor/glm
+	url = https://github.com/g-truc/glm

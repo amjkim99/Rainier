@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Rainier/vendor/GLFW/include"
 IncludeDir["Glad"] = "Rainier/vendor/Glad/include"
 IncludeDir["ImGui"] = "Rainier/vendor/imgui"
+IncludeDir["glm"] = "Rainier/vendor/glm"
 
 include "Rainier/vendor/GLFW"
 include "Rainier/vendor/Glad"
@@ -24,6 +25,7 @@ project "Rainier"
     location "Rainier"
     kind "SharedLib"
     language "C++"
+    staticruntime "off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -34,7 +36,9 @@ project "Rainier"
     files
     {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/vendor/glm/glm/**.hpp",
+        "%{prj.name}/vendor/glm/glm/**.inl"
     }
 
     includedirs
@@ -43,7 +47,8 @@ project "Rainier"
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.ImGui}"
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.glm}"
     }
 
     links
@@ -73,23 +78,24 @@ project "Rainier"
 
     filter "configurations:Debug"
         defines "RN_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "RN_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
 
     filter "configurations:Dist"
         defines "RN_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
 
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    staticruntime "off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -103,7 +109,8 @@ project "Sandbox"
     includedirs
     {
         "Rainier/vendor/spdlog/include",
-        "Rainier/src"
+        "Rainier/src",
+        "%{IncludeDir.glm}"
     }
 
     links
@@ -113,7 +120,6 @@ project "Sandbox"
 
     filter "system:windows"
         cppdialect "C++20"
-        staticruntime "On"
         systemversion "latest"
 
         defines
