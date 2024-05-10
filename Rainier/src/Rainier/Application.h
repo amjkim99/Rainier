@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Core.h"
+
 #include "Window.h"
 #include "Rainier/LayerStack.h"
 #include "Rainier/Events/Event.h"
 #include "Rainier/Events/ApplicationEvent.h"
 
-#include "Window.h"
+#include "Rainier/ImGui/ImGuiLayer.h"
 
 namespace Rainier {
 
@@ -29,6 +30,7 @@ namespace Rainier {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

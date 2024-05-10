@@ -110,6 +110,7 @@ project "Sandbox"
     {
         "Rainier/vendor/spdlog/include",
         "Rainier/src",
+        "Rainier/vendor",
         "%{IncludeDir.glm}"
     }
 
